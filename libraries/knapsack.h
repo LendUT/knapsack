@@ -16,8 +16,8 @@ typedef struct knapsack{
 Knapsack* create_knapsack(int size);
 void empty_knapsack(Knapsack *k);
 void set_capacity(Knapsack *k, int capacity);
-void set_weight(Knapsack *k, const int *weight);
-void set_value(Knapsack *k, const int *value);
+void set_weight(Knapsack *k, int *weight);
+void set_value(Knapsack *k, int *value);
 void print_knapsack(Knapsack *k);
 void print_all_items(Knapsack *k);
 void find_max_value(Knapsack *k);

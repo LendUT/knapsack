@@ -25,12 +25,12 @@ void set_capacity(Knapsack *k, int capacity){
   k->capacity = capacity;
 }
 
-void set_weight(Knapsack *k, const int *weight){
-    memcpy(k->weight, weight, sizeof(k->weight));
+void set_weight(Knapsack *k, int *weight){
+  memcpy(k->weight, weight, sizeof(int)*k->size);
 }
 
-void set_value(Knapsack *k, const int *value){
-  memcpy(k->value, value, sizeof(k->value));
+void set_value(Knapsack *k, int *value){
+  memcpy(k->value, value, sizeof(int)*k->size);
 }
 
 void print_knapsack(Knapsack *k){
@@ -40,7 +40,7 @@ void print_knapsack(Knapsack *k){
   printf("Itens [peso, valor]:");
   for(i = 0; i < k->size; ++i){
     if(k->is_included[i]){
-      printf(" [ %2d, %2d]", k->weight[i], k->value[i]);
+      printf(" [%2d, %2d]", k->weight[i], k->value[i]);
       total_value += k->value[i];
     }
   }
@@ -54,7 +54,7 @@ void print_all_items(Knapsack *k){
   printf("Numero de itens: %d\n", k->size);
   printf("Itens [peso, valor]:");
   for(i = 0; i < k->size; ++i){
-    printf(" [ %2d, %2d]", k->weight[i], k->value[i]);
+    printf(" [%2d, %2d]", k->weight[i], k->value[i]);
   }
   printf("\n");
 }
