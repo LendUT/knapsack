@@ -2,7 +2,7 @@ LIBS=$(wildcard libs/*)
 INCLUDE_PATH=libs/
 
 main: libraries
-	gcc main.c libraries/* -I$(INCLUDE_PATH) -o mochila0-1
+	gcc main.c libraries/* -I$(INCLUDE_PATH) -o mochila01
 
 libraries:
 	mkdir libraries/
