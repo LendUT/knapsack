@@ -81,3 +81,17 @@ void print_knapsack(Knapsack *k, Items *it){
   printf("Peso total: %d\n", k->utilized_capacity);
   printf("Valor total: %d\n", k->knapsack_value);
 }
+
+Knapsack* copy_knapsack(Knapsack *k, int size){
+  Knapsack *aux = malloc(sizeof(Knapsack));
+  aux->capacity = k->capacity;
+  aux->knapsack_value = k->knapsack_value;
+  aux->utilized_capacity = k->utilized_capacity;
+  aux->is_included = malloc(sizeof(int)*size);
+
+  int i;
+  for(i = 0; i < size; ++i){
+    aux->is_included[i] = k->is_included[i];
+  }
+  return aux;
+}

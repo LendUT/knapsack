@@ -1,11 +1,5 @@
 #include "list.h"
 
-typedef struct node{
-    Knapsack *info;
-    struct node* next;
-    struct node* prev;
-} List;
-
 List* queue_create(void){
   return NULL;
 }
@@ -21,6 +15,15 @@ List* queue_insert(List* l, Knapsack *k){
   return new;
 }
 
+void queue_print(List* l, Items *it){
+  List *aux;
+
+  for(aux = l; aux != NULL; aux = aux->next){
+    print_knapsack(aux->info, it);
+    printf(">>>>>>>>>>>>>oi<<<<<<<<<<<<<<<<<<<<<\n");
+  }
+}
+
 void queue_free(List *l){
   while (l != NULL){
         List *aux = l->next;
@@ -28,3 +31,16 @@ void queue_free(List *l){
         l = aux;
   }
 }
+
+// Knapsack* get_min_value(List *l){
+//   List *aux;
+//   Knapsack *k = l->info;
+//
+//   for(aux = l; aux != NULL; aux = aux->next){
+//     if(){
+//
+//     }
+//   }
+//
+//   return
+// }
