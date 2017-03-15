@@ -69,7 +69,6 @@ void remove_item(Knapsack *k, Items *it, int i){
 void print_knapsack(Knapsack *k, Items *it){
   int i, items = 0;
 
-  printf("\nITENS NA MOCHILA\n");
   printf("Itens [peso, valor]:");
   for(i = 0; i < get_size(it); ++i){
     if(k->is_included[i]){

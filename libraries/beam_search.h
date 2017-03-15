@@ -7,7 +7,7 @@
 
 #define CAPACITY 15
 
-void bs_find_max_value(Items *it, int capacity, int k);
+Knapsack* bs_find_max_value(Items *it, int capacity, int k);
 List* randomize_states(Items *it, int capacity, int k);
 void generate_successors(Knapsack *state, Items *it, List** set);
 float heuristic_cost(Knapsack *state);

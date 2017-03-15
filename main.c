@@ -34,8 +34,11 @@ int main(){
 }
 
 void find_max_value(Items *it, int capacity, int k){
-  printf("VALOR MAXIMO\n");
-  bs_find_max_value(it, capacity, k);
-  printf("\n");
-  printf("Busca por algoritmo genetico: %d\n", ga_find_max_value(it, capacity));
+  Knapsack *beam = bs_find_max_value(it, capacity, k);
+  // Knapsack *ga = ga_find_max_value(it, capacity);
+
+  printf("MOCHILA FINAL (feixe)\n");
+  print_knapsack(beam, it);
+  printf("\nMOCHILA FINAL (genetico)\n");
+  // print_knapsack(ga, it);
 }

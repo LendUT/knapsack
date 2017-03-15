@@ -1,6 +1,6 @@
 #include "beam_search.h"
 
-void bs_find_max_value(Items *it, int capacity, int k){
+Knapsack* bs_find_max_value(Items *it, int capacity, int k){
   int i;
   List *aux, *set;
 
@@ -27,13 +27,11 @@ void bs_find_max_value(Items *it, int capacity, int k){
       best_knapsack = beam->info;
     }
     else{
-
       break;
     }
   }
 
-  printf("MOCHILA FINAL (feixe)");
-  print_knapsack(best_knapsack, it);
+  return best_knapsack;
 }
 
 List* randomize_states(Items *it, int capacity, int k){

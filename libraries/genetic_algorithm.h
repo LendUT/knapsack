@@ -4,6 +4,6 @@
 #include "items.h"
 #include "knapsack.h"
 
-int ga_find_max_value(Items *it, int capacity);
+Knapsack* ga_find_max_value(Items *it, int capacity);
 
 #endif
