@@ -14,12 +14,13 @@
 
 #define SIZE 28
 #define CAPACITY 15
+#define K 3
 int SOURCE_WEIGHTS[SIZE] = {1, 3, 1, 8, 9, 3, 2, 8, 5, 1, 1, 6, 3, 2,
                            5, 2, 3, 8, 9, 3, 2, 4, 5, 4, 3, 1, 3, 2};
 int SOURCE_VALUES[SIZE] = {3, 8, 12, 2, 8, 4, 4, 5, 1, 1, 8, 6, 4, 3,
                            3, 5, 7, 3, 5, 7, 4, 3, 7, 2, 3, 5, 4, 3};
 
-void find_max_value(Items *it, int capacity);
+void find_max_value(Items *it, int capacity, int k);
 
 int main(){
   Items *it = create_items(SIZE);
@@ -27,13 +28,13 @@ int main(){
   set_value(it, SOURCE_VALUES);
 
   print_all_items(it);
-  find_max_value(it, CAPACITY);
+  find_max_value(it, CAPACITY, K);
 
   return 0;
 }
 
-void find_max_value(Items *it, int capacity){
-  printf("\nVALOR MAXIMO\n");
-  printf("Busca por feixe local: %d\n", bs_find_max_value(it, capacity));
+void find_max_value(Items *it, int capacity, int k){
+  printf("VALOR MAXIMO\n");
+  printf("Busca por feixe local: %d\n", bs_find_max_value(it, capacity, k));
   printf("Busca por algoritmo genetico: %d\n", ga_find_max_value(it, capacity));
 }

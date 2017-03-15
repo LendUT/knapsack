@@ -7,7 +7,6 @@
 typedef struct knapsack{
   int capacity;
   int knapsack_value;
-  int size;
   int utilized_capacity;
   int *is_included;
 } Knapsack;
