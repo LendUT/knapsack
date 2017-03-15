@@ -20,7 +20,6 @@ void queue_print(List* l, Items *it){
 
   for(aux = l; aux != NULL; aux = aux->next){
     print_knapsack(aux->info, it);
-    printf(">>>>>>>>>>>>>oi<<<<<<<<<<<<<<<<<<<<<\n");
   }
 }
 
@@ -32,15 +31,22 @@ void queue_free(List *l){
   }
 }
 
-// Knapsack* get_min_value(List *l){
-//   List *aux;
-//   Knapsack *k = l->info;
-//
-//   for(aux = l; aux != NULL; aux = aux->next){
-//     if(){
-//
-//     }
-//   }
-//
-//   return
-// }
+Knapsack* queue_get_max(List *l){
+  List *aux, *max = l;
+
+  for(aux = l; aux != NULL; aux = aux->next){
+    // if(get_knapsack_value(aux->info) > get_knapsack_value(max->info)){
+    if(heuristic_cost(aux->info) > heuristic_cost(max->info)){
+      max = aux;
+    }
+  }
+
+  if(max->prev != NULL){
+    max->prev->next = max->next;
+  }
+  if(max->next != NULL){
+    max->next->prev = max->prev;
+  }
+
+  return max->info;
+}

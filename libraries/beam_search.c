@@ -1,9 +1,11 @@
 #include "beam_search.h"
 
-int bs_find_max_value(Items *it, int capacity, int k){
+void bs_find_max_value(Items *it, int capacity, int k){
+  int i;
   List *aux, *set;
 
   List *beam = randomize_states(it, capacity, k);
+  Knapsack *best_knapsack = beam->info;
 
   while(beam != NULL){
     set = NULL;
@@ -11,16 +13,27 @@ int bs_find_max_value(Items *it, int capacity, int k){
     for(aux = beam; aux != NULL; aux = aux->next){
        generate_successors(aux->info, it, &set);
     }
-    queue_print(set, it);
     beam = NULL;
 
-    /*
-      ESCOLHA DOS K MELHORES E CONDICAO DE PARADA
-    */
-    break;
+    for(i = 0; i < k; ++i){
+      beam = queue_insert(beam, queue_get_max(set));
+      if(set == NULL){
+        printf(">>> ERRO: beam vazio!\n");
+        exit(1);
+      }
+    }
+
+    if(get_knapsack_value(beam->info) > get_knapsack_value(best_knapsack)){
+      best_knapsack = beam->info;
+    }
+    else{
+
+      break;
+    }
   }
 
-  return 0;
+  printf("MOCHILA FINAL (feixe)");
+  print_knapsack(best_knapsack, it);
 }
 
 List* randomize_states(Items *it, int capacity, int k){
@@ -37,9 +50,6 @@ List* randomize_states(Items *it, int capacity, int k){
         add_item(aux, it, item);
       }
     }
-    printf(">>teste randomize_states()");
-    printf("\n %d", i);
-    print_knapsack(beam->info, it);
   }
 
   return beam;
@@ -52,7 +62,7 @@ void generate_successors(Knapsack *state, Items *it, List **set){
     Knapsack *aux = copy_knapsack(state, size);
     Knapsack *aux2 = copy_knapsack(state, size);
 
-    if(get_utilized_capacity(aux) + get_weight(it, item) <= capacity){
+    if(!is_included(aux, item) && get_utilized_capacity(aux) + get_weight(it, item) <= capacity){
       add_item(aux, it, item);
       *set = queue_insert(*set, aux);
     }

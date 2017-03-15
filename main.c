@@ -35,6 +35,7 @@ int main(){
 
 void find_max_value(Items *it, int capacity, int k){
   printf("VALOR MAXIMO\n");
-  printf("Busca por feixe local: %d\n", bs_find_max_value(it, capacity, k));
+  bs_find_max_value(it, capacity, k);
+  printf("\n");
   printf("Busca por algoritmo genetico: %d\n", ga_find_max_value(it, capacity));
 }

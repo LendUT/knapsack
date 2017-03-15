@@ -16,5 +16,6 @@ List* queue_create(void);
 List* queue_insert(List* l, Knapsack *k);
 void queue_print(List* l, Items *it);
 void queue_free(List *l);
+Knapsack* queue_get_max(List *l);
 
 #endif
