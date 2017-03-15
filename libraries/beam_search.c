@@ -44,7 +44,7 @@ List* randomize_states(Items *it, int capacity, int k){
     beam = queue_insert(beam, aux);
     for(j = 0; j < size; j++){
       item = rand() % size;
-      if((get_utilized_capacity(aux) + get_weight(it, item)) < capacity){
+      if(!is_included(aux, item) && (get_utilized_capacity(aux) + get_weight(it, item)) < capacity){
         add_item(aux, it, item);
       }
     }
@@ -75,5 +75,6 @@ void generate_successors(Knapsack *state, Items *it, List **set){
 }
 
 float heuristic_cost(Knapsack *state){
-  return get_knapsack_value(state)/get_utilized_capacity(state);
+  // return ((float)get_knapsack_value(state))/get_utilized_capacity(state);
+  return ((float)get_knapsack_value(state));
 }

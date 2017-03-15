@@ -69,16 +69,17 @@ void remove_item(Knapsack *k, Items *it, int i){
 void print_knapsack(Knapsack *k, Items *it){
   int i, items = 0;
 
-  printf("Itens [peso, valor]:");
+  printf("Itens [indice, peso, valor]:");
   for(i = 0; i < get_size(it); ++i){
     if(k->is_included[i]){
-      printf(" [%2d, %2d]", get_weight(it, i), get_value(it, i));
+      printf(" [%2d,%2d,%2d]", i, get_weight(it, i), get_value(it, i));
       ++items;
     }
   }
   printf("\nNumero de itens: %d\n", items);
   printf("Peso total: %d\n", k->utilized_capacity);
   printf("Valor total: %d\n", k->knapsack_value);
+  printf("Valor por quilo: %.1f\n", ((float)k->knapsack_value / k->utilized_capacity));
 }
 
 Knapsack* copy_knapsack(Knapsack *k, int size){
