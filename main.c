@@ -15,7 +15,7 @@
 #define SIZE 28
 #define CAPACITY 28
 #define K 320
-#define POPULATION_SIZE 1000
+#define POPULATION_SIZE 340
 int SOURCE_VALUES[SIZE] = {1, 3, 1, 8, 9, 3, 2, 8, 5, 1, 1, 6, 3, 2,
                            5, 2, 3, 8, 9, 3, 2, 4, 5, 4, 3, 1, 3, 2};
 int SOURCE_WEIGHTS[SIZE] = {3, 8, 12, 2, 8, 4, 4, 5, 1, 1, 8, 6, 4, 3,
