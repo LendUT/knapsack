@@ -18,5 +18,8 @@ void add_item(Knapsack *k, Items *it, int i);
 void remove_item(Knapsack *k, Items *it, int i);
 void print_knapsack(Knapsack *k, Items *it);
 Knapsack* copy_knapsack(Knapsack *k, int size);
+void sort(Knapsack **k, int size);
+Knapsack** randomize_states(Items *it, int capacity, int k);
+int is_better_than(Knapsack *a, Knapsack *b);
 
 #endif

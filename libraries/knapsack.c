@@ -79,7 +79,6 @@ void print_knapsack(Knapsack *k, Items *it){
   printf("\nNumero de itens: %d\n", items);
   printf("Peso total: %d\n", k->utilized_capacity);
   printf("Valor total: %d\n", k->knapsack_value);
-  printf("Valor por quilo: %.1f\n", ((float)k->knapsack_value / k->utilized_capacity));
 }
 
 Knapsack* copy_knapsack(Knapsack *k, int size){
@@ -94,4 +93,61 @@ Knapsack* copy_knapsack(Knapsack *k, int size){
     aux->is_included[i] = k->is_included[i];
   }
   return aux;
+}
+
+void sort(Knapsack **k, int size){
+  int i = size / 2, parent, child;
+  Knapsack *aux;
+
+  for(;;){
+    if(i > 0){
+      --i;
+      aux = k[i];
+    }
+    else{
+      --size;
+      if(size == 0){
+        return;
+      }
+      aux = k[size];
+      k[size] = k[0];
+    }
+    parent = i;
+    child = i * 2 + 1;
+    while(child < size){
+      if(child + 1 < size  &&  fitness_level(k[child + 1]) < fitness_level(k[child])){
+        ++child;
+      }
+      if(fitness_level(k[child]) < fitness_level(aux)){
+        k[parent] = k[child];
+        parent = child;
+        child = parent * 2 + 1;
+      }
+      else{
+        break;
+      }
+    }
+    k[parent] = aux;
+  }
+}
+
+Knapsack** randomize_states(Items *it, int capacity, int k){
+  int i, j, item, size = get_size(it);
+  Knapsack **states = malloc(sizeof(Knapsack*) * k);
+
+  for(i = 0; i < k; ++i){
+    states[i] = create_knapsack(capacity, size);
+    for(j = 0; j < size; j++){
+      item = rand() % size;
+      if(!is_included(states[i], item) && (get_utilized_capacity(states[i]) + get_weight(it, item)) < capacity){
+        add_item(states[i], it, item);
+      }
+    }
+  }
+
+  return states;
+}
+
+int is_better_than(Knapsack *a, Knapsack *b){
+  return get_knapsack_value(a) > get_knapsack_value(b) ? 1 : 0;
 }

@@ -13,8 +13,8 @@
 #include "libraries/items.h"
 
 #define SIZE 28
-#define CAPACITY 15
-#define K 10
+#define CAPACITY 28
+#define K 320
 #define POPULATION_SIZE 1000
 int SOURCE_VALUES[SIZE] = {1, 3, 1, 8, 9, 3, 2, 8, 5, 1, 1, 6, 3, 2,
                            5, 2, 3, 8, 9, 3, 2, 4, 5, 4, 3, 1, 3, 2};
